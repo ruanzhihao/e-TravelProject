@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd">
+    <!--1.声明凭证匹配器-->
+    <bean id="credentialsMatcher" class="org.apache.shiro.authc.credential.HashedCredentialsMatcher">
+        <property name="hashAlgorithmName" value="md5"></property>
+        <property name="hashIterations" value="2"></property>
+    </bean>
+    <!--2.声明UserRealm-->
+    <bean id="userRealm" class="com.iflytek.realm.UserRealm">
+        <!--2.1注入匹配器-->
+        <property name="credentialsMatcher" ref="credentialsMatcher"></property>
+    </bean>
+    <!--3.配置SecurityManager-->
+    <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+        <!--3.1注入Realm-->
+        <property name="realm" ref="userRealm"></property>
+    </bean>
+
+    <!--4.配置shiro的过滤器，这里的id 必须和web.xml当中配置是一样-->
+    <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+        <!--4.1注入安全管理器-->
+        <property name="securityManager" ref="securityManager"></property>
+        <property name="loginUrl" value="/login.jsp"></property>
+        <property name="unauthorizedUrl" value="/unauthorized.jsp"></property>
+        <property name="filterChainDefinitions">
+            <value>
+                <!--根路径放行-->
+                /=anon
+                <!--登录页放行-->
+                /login.jsp=anon
+                <!--所有登录请求放行-->
+                /user/login*=anon
+                <!--测试放行-->
+                /user/test=anon
+                <!--登出-->
+                /logout=logout
+                <!--/user/**=user-->
+                /user/userUpdate=user
+                <!--拦截其他所有-->
+                /**=authc
+            </value>
+        </property>
+    </bean>
+
+</beans>
