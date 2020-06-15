@@ -13,7 +13,7 @@
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
     <!--Spring 版本-->
-    <spring.verison>5.0.2.RELEASE</spring.verison>
+    <spring.verison>5.2.7.RELEASE</spring.verison>
     <!--日志版本-->
     <slf4j.verison>1.6.6</slf4j.verison>
     <log4j.verison>1.2.12</log4j.verison>
