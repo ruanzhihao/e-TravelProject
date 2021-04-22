@@ -18,7 +18,7 @@
     <slf4j.verison>1.6.6</slf4j.verison>
     <log4j.verison>1.2.12</log4j.verison>
     <!--Mybatis框架版本-->
-    <mybatis.version>3.4.5</mybatis.version>
+    <mybatis.version>3.5.6</mybatis.version>
     <!--Shiro版本-->
     <shiro.version>1.4.2</shiro.version>
     </properties>
