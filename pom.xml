@@ -20,7 +20,7 @@
     <!--Mybatis框架版本-->
     <mybatis.version>3.4.5</mybatis.version>
     <!--Shiro版本-->
-    <shiro.version>1.4.2</shiro.version>
+    <shiro.version>1.7.1</shiro.version>
     </properties>
   
   <dependencies>
